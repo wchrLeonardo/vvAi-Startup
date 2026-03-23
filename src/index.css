@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+    /* Fundo e Texto */
+    --color-vvai-bg: #F4F4F4;
+    --color-vvai-text: #1B1B1B;
+
+    /* As cores da sua marca */
+    --color-vvai-blue: #1437BF;
+    --color-vvai-purple: #8754F2;
+    --color-vvai-highlight: #AE42EF;
+    --color-vvai-purple-dark: #650D94;
+}
+
+body {
+  background-color: var(--color-vvai-bg);
+  color: var(--color-vvai-text);
+}
