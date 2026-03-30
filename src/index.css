@@ -1,4 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'Azonix';
+  src: url('./assets/fonts/Azonix.otf') format('opentype'); /* Se for .ttf, o format é 'truetype' */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Mostra a fonte do sistema até a Azonix carregar */
+}
 
 @theme {
     /* Fundo e Texto */
@@ -7,12 +16,18 @@
 
     /* As cores da sua marca */
     --color-vvai-blue: #1437BF;
+    --color-vvai-blue-dark: #231971;
     --color-vvai-purple: #8754F2;
     --color-vvai-highlight: #AE42EF;
     --color-vvai-purple-dark: #650D94;
+
+    /* Criando o pincel da nova fonte */
+    --font-inter: 'Inter', sans-serif;
+    --font-azonix: 'Azonix', sans-serif;
 }
 
 body {
   background-color: var(--color-vvai-bg);
   color: var(--color-vvai-text);
+  font-family: var(--font-inter);
 }

@@ -12,7 +12,7 @@ export default function Navbar() {
       
       {/* 2. A Barra em si: Aqui entra o design flutuante e o efeito de vidro Glassmorphism */}
 
-      <nav className="w-full max-w-4xl flex items-center justify-between px-6 py-3 rounded-full bg-vvai-text/4 backdrop-blur-md border border-vvai-bg/20 shadow-lg">
+      <nav className="w-full max-w-5xl flex items-center justify-between px-6 py-3 rounded-full bg-vvai-text/4 backdrop-blur-md border border-vvai-bg/20 shadow-lg">
         
         {/* LADO ESQUERDO: Logo da vvAi */}
         <div className="flex items-center gap-2 cursor-pointer">
