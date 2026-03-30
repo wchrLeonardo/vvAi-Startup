@@ -1,7 +1,27 @@
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Sparkles } from '@react-three/drei' // 'drei' é uma biblioteca de ajudantes incríveis
-
+import { OrbitControls, Sparkles, Float, useTexture } from '@react-three/drei' // 'drei' é uma biblioteca de ajudantes incríveis
+import { Suspense } from 'react'
 import LOGO from '../assets/LOGO.png';
+
+
+// 1.5 O COMPONENTE DO HOLOGRAMA 2.5D
+function VvAiHologram() {
+  // O hook useTexture pega a imagem que você importou e transforma em "tinta 3D"
+  const texture = useTexture(LOGO); 
+  
+  return (
+    // O Float injeta a gravidade zero (sobe, desce e tomba de leve)
+    <Float speed={2} rotationIntensity={0.5} floatIntensity={1.5}>
+      <mesh>
+        {/* O Plane é um "papel" 3D. args=[largura, altura]. */}
+        <planeGeometry args={[4, 3]} /> 
+        {/* Aplicamos a sua logo no papel, respeitando o fundo transparente */}
+        <meshBasicMaterial map={texture} transparent={true} toneMapped={false} />
+      </mesh>
+    </Float>
+  );
+}
+
 
 // 1. Separar o conteúdo em sub-componentes (React Profissional)
 function HeroContent() {
@@ -68,29 +88,23 @@ export default function Hero() {
         {/* O Canvas preenche automaticamente 100% da altura e largura da div pai */}
         <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
 
-          {/* A. ILUMINAÇÃO (Essencial para ver qualquer objeto) */}
-          {/* ambientLight: Uma luz suave que ilumina a cena inteira por igual */}
+        {/* A. ILUMINAÇÃO */}
           <ambientLight intensity={0.5} />
-          {/* pointLight: Uma luz que emana de um ponto específico (como uma lâmpada) */}
-          <pointLight position={[10, 10, 10]} intensity={1} color="#AE42EF" /> {/* Usando o Pink Highlight da vvAi */}
+          <pointLight position={[10, 10, 10]} intensity={1} color="#AE42EF" />
 
-          {/* B. CONTROLES (Ajudante 'drei' para teste) */}
-          {/* OrbitControls: Permite que você clique com o mouse e gire a cena. Ótimo para testarmos o 3D. */}
-          <OrbitControls enableZoom={false} />
+          {/* B. CONTROLES */}
+          {/* Travamos o Pan e o Zoom para o usuário girar a logo, mas não tirá-la da tela */}
+          {/* <OrbitControls enableZoom={false} enablePan={false} /> */}
 
-          {/* C. O OBJETO "HELLO WORLD" (Placeholder para testar o motor) */}
-          {/* Vamos criar um cubo simples e roxo, já usando a geometria real */}
-          <mesh rotation={[10, 10, 0]}>
-            {/* Definimos a geometria (forma) */}
-            <boxGeometry args={[2, 2, 2]} />
-            {/* Definimos o material (a superfície) e a cor */}
-            <meshStandardMaterial color="#8754F2" wireframe /> {/* Usando o Purple da vvAi e wireframe para ver os vértices */}
-          </mesh>
+          {/* C. O EFEITO NEON/DADOS (Sparkles) */}
+          <Sparkles count={100} scale={5} size={2} speed={0.4} opacity={0.6} color="#AE42EF" />
+          <Sparkles count={50} scale={4} size={3} speed={0.2} opacity={0.3} color="#4287f5" />
 
-          {/* D. PREVIEW DO "BRILHINHO" (Opcional, já testando o clima) */}
-          {/* Sparkles: Outro ajudante 'drei' que cria partículas aleatórias no espaço */}
-          <Sparkles count={50} scale={3} size={2} speed={0.3} color="#AE42EF" />
-
+          {/* D. O HOLOGRAMA DA LOGO */}
+          {/* O Suspense é obrigatório para o React esperar a imagem carregar antes de mostrar */}
+          <Suspense fallback={null}>
+            <VvAiHologram />
+          </Suspense>
         </Canvas>
 
         {/* Removemos a camada invisível de interação, o Canvas já pega os cliques! */}
