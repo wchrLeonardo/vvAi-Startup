@@ -2,6 +2,8 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Sparkles, Float, useTexture } from '@react-three/drei' // 'drei' é uma biblioteca de ajudantes incríveis
 import { Suspense } from 'react'
 import LOGO from '../assets/LOGO.png';
+import SHIELD from '../assets/shield.png';
+import LIGHTNING from '../assets/lightning.png';
 
 
 // 1.5 O COMPONENTE DO HOLOGRAMA 2.5D
@@ -14,7 +16,7 @@ function VvAiHologram() {
     <Float speed={2} rotationIntensity={0.5} floatIntensity={1.5}>
       <mesh>
         {/* O Plane é um "papel" 3D. args=[largura, altura]. */}
-        <planeGeometry args={[4, 3]} /> 
+        <planeGeometry args={[5, 3]} /> 
         {/* Aplicamos a sua logo no papel, respeitando o fundo transparente */}
         <meshBasicMaterial map={texture} transparent={true} toneMapped={false} />
       </mesh>
@@ -26,7 +28,7 @@ function VvAiHologram() {
 // 1. Separar o conteúdo em sub-componentes (React Profissional)
 function HeroContent() {
   return (
-    <div className="flex flex-col gap-6 md:gap-8 max-w-xl z-10 px-4">
+    <div className="flex flex-col gap-4 md:gap-4 max-w-xl z-10 px-4">
       {/* Slogan Grande */}
       <h1 className="font-azonix text-4xl md:text-5xl font-extrabold text-vvai-blue-dark leading-tight">
         Inteligência Artificial que <span className="text-vvai-highlight">conecta</span> sua visão.
@@ -41,24 +43,36 @@ function HeroContent() {
       {/* Mudei items-center para items-stretch para que ambos os cards tenham a mesma altura, independente do texto */}
       <div className="flex flex-col sm:flex-row items-center gap-4 mt-5">
 
-        {/* Card 1 */}
-        <div className="flex flex-col items-start gap-1 bg-white p-5 rounded-lg border border-vvai-text/5 border-l-4 border-l-vvai-purple shadow-sm w-full sm:max-w-[240px]">
-          {/* Ícone temporário (um emoji ou SVG depois) */}
-          <div className="text-xl">🛡️</div>
+      {/* Card 1 */}
+        {/* 1. Ajustei o gap pai de gap-1 para gap-2 para dar um respiro melhor entre o cabeçalho e o texto */}
+        <div className="flex flex-col items-start bg-white px-5 py-2 rounded-lg border border-vvai-text/5 border-l-4 border-l-vvai-purple shadow-sm w-full sm:max-w-[240px]">
+          
+          {/* 2. A NOVA SUB-CAIXA: Agrupa o Ícone Escudo e o Título lado a lado */}
+          <div className="flex items-center">
+            {/* 3. A imagem agora tem o tamanho exato e a classe de segurança object-contain */}
+            <img src={SHIELD} alt="Shield" className="w-14 h-14 object-contain" />
+            <h3 className="font-bold text-sm text-vvai-purple tracking-wide uppercase">Seguro</h3>
+          </div>
 
-          {/* Título */}
-          <h3 className="font-bold text-sm text-vvai-purple tracking-wide uppercase">Seguro</h3>
-
-          {/* Descrição nova */}
+          {/* 4. Descrição limpa, herdando o alinhamento da caixa pai */}
           <p className="text-xs text-vvai-text/70 leading-relaxed">
             Tecnologia avançada para proteger seus dados e garantir a confiabilidade da IA.
           </p>
+          
         </div>
 
-        {/* Card 2 */}
-        <div className="flex flex-col items-start gap-1 bg-white p-5 rounded-lg border border-vvai-text/5 border-l-4 border-l-vvai-highlight shadow-sm w-full sm:max-w-[240px]">
-          <div className="text-xl">⚡</div>
-          <h3 className="font-bold text-sm text-vvai-highlight tracking-wide uppercase">Prático</h3>
+          {/* Card 2 */}
+        {/* 1. O p-5 voltou para cá! O cartão inteiro agora tem espaçamento interno */}
+        <div className="flex flex-col items-start bg-white px-5 py-2 rounded-lg border border-vvai-text/5 border-l-4 border-l-vvai-highlight shadow-sm w-full sm:max-w-[240px]">
+          
+          {/* 2. Adicionei items-center para o título ficar bem alinhado com esse seu ícone grandão */}
+          <div className='flex items-center gap-3'>          
+            <img src={LIGHTNING} alt="Lightning" className='w-14 h-14 object-contain' />
+            {/* 3. Adeus mt-4! */}
+            <h3 className="font-bold text-sm text-vvai-highlight tracking-wide uppercase">Prático</h3>
+          </div>
+          
+          {/* 4. Adeus p-5! A distância para o título agora é controlada pelo 'gap-2' lá no pai */}
           <p className="text-xs text-vvai-text/70 leading-relaxed">
             A experiência fluida e intuitiva que você gostaria que todas as ferramentas tivessem.
           </p>
@@ -73,7 +87,7 @@ function HeroContent() {
 export default function Hero() {
   return (
     /* O Palco: H-screen ocupando a tela toda. Grid de 1 coluna (mobile) e 2 colunas (desktop). */
-    <section className="relative w-full min-h-screen pt-20 grid grid-cols-1 md:grid-cols-2 items-center justify-center overflow-hidden bg-vvai-bg">
+    <section className="relative w-full min-h-screen pt-[8%] grid grid-cols-1 md:grid-cols-2 items-center justify-center overflow-hidden bg-vvai-bg">
 
       {/* COLUNA ESQUERDA: O Conteúdo (Centralizado horizontalmente no Grid) */}
       <div className="flex justify-center md:justify-end items-center h-full px-4 md:px-12 md:mr-[-10vw]">

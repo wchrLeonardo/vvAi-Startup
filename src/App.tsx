@@ -1,5 +1,7 @@
 import Hero from './sections/Hero'
 import Navbar from './components/Navbar'
+import About from './sections/About'
+import Team from './sections/Team'
 
 function App() {
   return (
@@ -7,6 +9,9 @@ function App() {
       <Navbar />
 
       <Hero />  
+      <About />
+      <Team />
+
     </main>
   )
 }
