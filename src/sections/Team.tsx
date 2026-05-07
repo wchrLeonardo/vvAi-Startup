@@ -1,4 +1,9 @@
 
+import leoImg from '../assets/teams/leo.jpeg';
+import brunoImg from '../assets/teams/bruno.jpeg';
+import danielImg from '../assets/teams/daniel.jpeg';
+import joaoImg from '../assets/teams/joao.jpeg';
+import marceloImg from '../assets/teams/marcelo.jpeg';
 
 // 1. Array de Dados (O padrão profissional)
 // Separamos os dados do HTML para ficar fácil de você trocar as fotos e nomes depois.
@@ -6,33 +11,32 @@ const teamMembers = [
   {
     id: 1,
     name: "Leonardo Wicher L. Ferreira",
-    role: "Co-founder & Tech Lead",
-    // Placeholder estilizado (Substitua pela URL da foto real depois)
-    image: "https://placehold.co/400x500/0a0a0f/8754F2?text=L", 
+    role: "Gestão e Desenvolvimento BackEnd",
+    image: leoImg,
   },
   {
     id: 2,
-    name: "Membro 2",
-    role: "Head de Inteligência Artificial",
-    image: "https://placehold.co/400x500/0a0a0f/4287f5?text=M2",
+    name: "Bruno Lopes de Souza",
+    role: "Desenvolvimento e Análise de Dados",
+    image: brunoImg,
   },
   {
     id: 3,
-    name: "Membro 3",
-    role: "UX/UI Designer",
-    image: "https://placehold.co/400x500/0a0a0f/8754F2?text=M3",
+    name: "Daniel Augusto Mandira",
+    role: "Desenvolvimento Mobile",
+    image: danielImg,
   },
   {
     id: 4,
-    name: "Membro 4",
-    role: "Engenheiro de Dados",
-    image: "https://placehold.co/400x500/0a0a0f/4287f5?text=M4",
+    name: "João Pedro F. Cordeiro",
+    role: "Desenvolvimento FrontEnd",
+    image: joaoImg,
   },
   {
     id: 5,
-    name: "Membro 5",
-    role: "Especialista em Negócios",
-    image: "https://placehold.co/400x500/0a0a0f/8754F2?text=M5",
+    name: "Marcelo Augusto A. da Cruz",
+    role: "Esgenheiro de Dados e Machine Learning",
+    image: marceloImg,
   }
 ];
 
@@ -71,13 +75,13 @@ export default function Team() {
               <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden mb-6 shadow-lg border border-vvai-text/5 bg-[#0a0a0f]">
                 
                 {/* Overlay Neon (Invisível por padrão, aparece no hover) */}
-                <div className="absolute inset-0 bg-gradient-to-t from-vvai-purple/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-vvai-purple/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
                 
-                {/* A Foto (Fica PB por padrão, ganha cor e dá um zoom no hover) */}
+                {/* A Foto (Opacidade reduzida por padrão, revela com zoom no hover) */}
                 <img 
                   src={member.image} 
                   alt={`Foto de ${member.name}`}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 ease-in-out"
+                  className="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-in-out"
                 />
 
                 {/* Ícones Sociais Flutuantes (Sobem no hover) */}
