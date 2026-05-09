@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Sparkles, Float, useTexture } from '@react-three/drei' // 'drei' é uma biblioteca de ajudantes incríveis
+import { Sparkles, Float, useTexture } from '@react-three/drei' // 'drei' é uma biblioteca de ajudantes incríveis
 import { Suspense } from 'react'
 import LOGO from '../assets/LOGO.png';
 import SHIELD from '../assets/shield.png';
