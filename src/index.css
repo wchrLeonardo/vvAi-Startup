@@ -30,4 +30,88 @@ body {
   background-color: var(--color-vvai-bg);
   color: var(--color-vvai-text);
   font-family: var(--font-inter);
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-vvai-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-vvai-purple);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-vvai-highlight);
+}
+
+/* Hide default cursor to use custom one */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, [role="button"], input, textarea, select {
+    cursor: none !important;
+  }
+}
+
+/* ── Neon Traveling Border ── */
+@property --neon-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.neon-nav {
+  --neon-angle: 0deg;
+  position: relative;
+  background:
+    /* Interior sólido */
+    linear-gradient(#F4F4F4, #F4F4F4) padding-box,
+    /* Borda estática sutil para dar forma o tempo todo */
+    linear-gradient(rgba(135,84,242,0.12), rgba(174,66,239,0.08)) border-box;
+  border: 2px solid transparent;
+  border-radius: 9999px;
+}
+
+/* A luz neon percorrendo a borda (pseudo-element para não conflitar com backdrop-blur) */
+.neon-nav::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--neon-angle),
+    transparent 82%,
+    #1437BF 88%,
+    #8754F2 92%,
+    #AE42EF 95%,
+    rgba(255,255,255,0.9) 96.5%,
+    #AE42EF 98%,
+    #8754F2 99%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: neon-spin 6s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes neon-spin {
+  to { --neon-angle: 360deg; }
 }

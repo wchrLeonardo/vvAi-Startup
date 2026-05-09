@@ -187,7 +187,7 @@ function LogoAnnotated() {
 
           if (ann.align === 'center') {
             // Topo centro
-            positionStyles.top = '-10px';
+            positionStyles.top = '-45px';
             positionStyles.left = '50%';
             positionStyles.transform = 'translateX(-50%)';
             positionStyles.textAlign = 'center';
