@@ -76,8 +76,8 @@ html {
   --neon-angle: 0deg;
   position: relative;
   background:
-    /* Interior sólido */
-    linear-gradient(#F4F4F4, #F4F4F4) padding-box,
+    /* Interior translúcido para glassmorphism (mais transparente e claro) */
+    linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)) padding-box,
     /* Borda estática sutil para dar forma o tempo todo */
     linear-gradient(rgba(135,84,242,0.12), rgba(174,66,239,0.08)) border-box;
   border: 2px solid transparent;
